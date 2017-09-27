@@ -17,7 +17,9 @@ li {
   transition: all .3s ease;
 }
 
-li:hover {
+
+li:hover,
+li.active {
   background: #B71C1C;
 }
 
@@ -30,7 +32,7 @@ li a {
 .container {
   margin: 1% 5%;
   padding: 1%;
-  box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.5);
+  box-shadow: 2px 3px 10px rgba(0, 0, 0, 0.1);
   min-height: 100%;
   border-radius: 2px;
 }

@@ -8,7 +8,7 @@ export default class App extends Component {
       <div className="App">
         <div className="header">
           <ul>
-            <li><Link to ="/home">Home</Link></li>
+            <li className="active"><Link to ="/home">Home</Link></li>
             <li><Link to ="/home">Lorem</Link></li>
             <li><Link to ="/home">Ipsum</Link></li>
           </ul>
