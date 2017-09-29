@@ -18,7 +18,8 @@ export default class App extends Component {
             </ul>
           </div>
         </nav>
-
+        {/* remover essa coisa feia abaixo */}
+        <br/><br/>
         <div className="container">
           {this.props.children}
         </div>

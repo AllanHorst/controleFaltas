@@ -10,3 +10,7 @@ export const daysOfWeek = [
   { id: 5, name: 'Sexta-Feira'},
   { id: 6, name: 'Sábado'}
 ]
+
+export function isEmpty(value) {
+  return value == '' || value == null || value == 0
+}

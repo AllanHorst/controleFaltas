@@ -8,6 +8,7 @@ export default class MatterRegister extends React.Component{
   constructor(props) {
     super(props)
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.addSchedule = this.addSchedule.bind(this);
     this.state = {
       matter: {
         name: '',
@@ -15,8 +16,28 @@ export default class MatterRegister extends React.Component{
         course_load: 0,
         schedule: []
       },
-      schedule: {a: 'teste'}
+      schedule: {
+        day: '1'
+      }
     }
+  }
+
+  addSchedule(event) {
+    event.preventDefault()
+    let { schedule } = this.state
+    let { matter } = this.state
+
+    if (Util.isEmpty(schedule.start_time) || Util.isEmpty(schedule.end_time)) {
+      return;
+    }
+
+    matter.schedule.push(schedule)
+    this.setState({
+      matter: matter,
+      schedule: {}
+    })
+
+    console.log(this.state.matter)
   }
 
   handleSubmit(event) {
@@ -79,7 +100,7 @@ export default class MatterRegister extends React.Component{
           </div>
 
           <div className="row">
-            <div className="col-xs-12 col-md-8 col-lg-12">
+            <div className="col-xs-12 col-md-6 col-lg-2">
               <SelectField name="day"
                 value={this.state.schedule.day}
                 list={Util.daysOfWeek}
@@ -88,6 +109,32 @@ export default class MatterRegister extends React.Component{
                 nameField="name"
                 onChange={event => this.updateField(event, 'schedule')}/>
             </div>
+
+            <div className="col-xs-12 col-md-3 col-lg-2">
+              <InputField
+                label="Hora Início"
+                required="true"
+                name="start_time"
+                type="text"
+                placeholder="Ex: 19:15"
+                value={this.state && this.state.name}
+                onChange={ event => { this.updateField(event, 'schedule') } }/>
+            </div>
+
+            <div className="col-xs-12 col-md-3 col-lg-2">
+              <InputField
+                label="Hora Fim"
+                required="true"
+                name="end_time"
+                type="text"
+                placeholder="Ex: 19:15"
+                value={this.state && this.state.name}
+                onChange={ event => { this.updateField(event, 'schedule') } }/>
+            </div>
+            <div className="col-xs-12 col-md-3 col-lg-2">
+              <button style={ {marginTop: '30px'} } className="btn btn-default" onClick={ this.addSchedule }>Adicionar</button>
+            </div>
+
           </div>
 
 

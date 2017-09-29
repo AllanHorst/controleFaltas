@@ -35,7 +35,9 @@ export default class SelectField extends React.Component {
           onChange={this.handleChange } >
 
           { this.props.list && this.props.list.map( obj =>
-            <option key={obj[this.props.idField || 'id']} value={obj[this.props.idField || 'id']} >{obj[this.props.nameField || 'name']}</option>
+            <option key={obj[this.props.idField || 'id']} value={obj[this.props.idField || 'id']} >
+              {obj[this.props.nameField || 'name']}
+            </option>
           ) }
         </select>
       </div>
