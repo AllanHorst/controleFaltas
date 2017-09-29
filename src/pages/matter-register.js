@@ -79,11 +79,12 @@ export default class MatterRegister extends React.Component{
           </div>
 
           <div className="row">
-            <div className="col-xs-12 col-md-8 col-lg-6">
+            <div className="col-xs-12 col-md-8 col-lg-12">
               <SelectField name="day"
                 value={this.state.schedule.day}
                 list={Util.daysOfWeek}
                 idField="id"
+                label="Dia da Semana"
                 nameField="name"
                 onChange={event => this.updateField(event, 'schedule')}/>
             </div>
