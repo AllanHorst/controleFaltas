@@ -13,28 +13,46 @@ export default class InputField extends React.Component {
     this.handleChange = this.handleChange.bind(this);
   }
 
+  validatePresence(value) {
+    if (value != null && value.length == 0) {
+      return 'Campo Obrigatório'
+    }
+
+    return '';
+  }
+
   handleChange(event) {
     let { value } = event.target;
+    let msg = '';
+
+    if (this.props.required && this.props.required == 'true') {
+      msg = this.validatePresence(value)
+    }
+
+    if (msg == '' && this.props.validate) {
+      msg = this.props.validate(value)
+    }
+
     this.setState({
-      value: value,
-      message: this.props.validate(value)
+      message: msg
     })
-    this.props.onChange(value)
+    this.props.onChange(event)
   }
 
   render() {
     return (
-      <div>
-        <label>
+      <div className={`form-group has-feedback ${ this.state.message ? 'has-danger' : ''}`}>
+      <label htmlFor="this.state.id">
           {this.props.label}
         </label>
           <input id={this.state.id}
-             className={`form-control ${this.props.styleClass || ''}`}
-             placeholder={this.props.placeholder}
-             type={ this.props.type || 'text'}
-             value={this.state.value}
-             onChange={ this.handleChange }/>
-        <span>{ this.state && this.state.message ? this.state.message : ''}</span>
+            name={ this.props.name || ''}
+            className={`form-control ${this.props.styleClass || ''}`}
+            placeholder={this.props.placeholder}
+            type={ this.props.type || 'text'}
+            value={this.state.value}
+            onChange={ this.handleChange }/>
+        <span className="form-text text-muted">{ this.state && this.state.message ? this.state.message : ''}</span>
       </div>
     )
   }
