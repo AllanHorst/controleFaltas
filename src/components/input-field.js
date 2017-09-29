@@ -17,6 +17,7 @@ export default class InputField extends React.Component {
     let { value } = event.target;
     this.setState({
       value: value,
+      message: this.props.validate(value)
     })
     this.props.onChange(value)
   }
@@ -26,8 +27,13 @@ export default class InputField extends React.Component {
       <div>
         <label>
           {this.props.label}
-          <input id={this.state.id} placeholder={this.props.placeholder} type={ this.props.type || 'text'} value={this.state.value} onChange={ this.handleChange }/>
         </label>
+          <input id={this.state.id}
+             className={`form-control ${this.props.styleClass || ''}`}
+             placeholder={this.props.placeholder}
+             type={ this.props.type || 'text'}
+             value={this.state.value}
+             onChange={ this.handleChange }/>
         <span>{ this.state && this.state.message ? this.state.message : ''}</span>
       </div>
     )
