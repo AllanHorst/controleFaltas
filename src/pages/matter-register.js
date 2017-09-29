@@ -34,7 +34,9 @@ export default class MatterRegister extends React.Component{
     matter.schedule.push(schedule)
     this.setState({
       matter: matter,
-      schedule: {}
+      schedule: {
+        day: '1'
+      }
     })
 
     console.log(this.state.matter)
@@ -104,7 +106,6 @@ export default class MatterRegister extends React.Component{
               <SelectField name="day"
                 value={this.state.schedule.day}
                 list={Util.daysOfWeek}
-                idField="id"
                 label="Dia da Semana"
                 nameField="name"
                 onChange={event => this.updateField(event, 'schedule')}/>
@@ -137,6 +138,30 @@ export default class MatterRegister extends React.Component{
 
           </div>
 
+          <div className="row">
+            <div className="col-xs-12 col-md-8 col-lg-6">
+              <table className="table">
+                <thead>
+                  <tr>
+                    <th>Dia</th>
+                    <th>Hora Início</th>
+                    <th>Hora Fim</th>
+                    <th></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  { this.state.matter.schedule.map((s, i) =>
+                    <tr key={i}>
+                      <td>{ Util.getDay(s.day).name }</td>
+                      <td>{ s.start_time }</td>
+                      <td>{ s.end_time }</td>
+                      <td><button className="btn btn-default">Excluir</button></td>
+                    </tr>
+                  )}
+                </tbody>
+              </table>
+            </div>
+          </div>
 
           <div className="row">
             <div className="col-xs-12 col-md-8 col-lg-6">

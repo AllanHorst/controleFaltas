@@ -11,6 +11,10 @@ export const daysOfWeek = [
   { id: 6, name: 'Sábado'}
 ]
 
+export function getDay(id) {
+  return daysOfWeek.find(x => x.id == id)
+}
+
 export function isEmpty(value) {
   return value == '' || value == null || value == 0
 }
